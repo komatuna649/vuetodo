@@ -21,14 +21,14 @@
           <th>コメント</th>
           <th>状態</th>
         </tr>
-        <tr v-for="(list, index) in showTasks" v-bind:key="index">
-          <td>{{ list.id }}</td>
-          <td>{{ list.comment }}</td>
-          <td v-if="list.state">
-            <button @click="changeWorkState(list.id)">作業中</button>
+        <tr v-for="(todo, index) in computedTodos" v-bind:key="index">
+          <td>{{ todo.id }}</td>
+          <td>{{ todo.comment }}</td>
+          <td v-if="todo.state">
+            <button @click="changeWorkState(todo.id)">作業中</button>
           </td>
           <td v-else>
-            <button @click="changeWorkState(list.id)">完了</button>
+            <button @click="changeWorkState(todo.id)">完了</button>
           </td>
           <td><button>削除</button></td>
         </tr>
@@ -47,13 +47,13 @@ export default {
   data() {
     return {
       works: [
-        { id: 'all', value: 0, text: 'すべて' },
-        { id: 'doing', value: 1, text: '作業中' },
-        { id: 'done', value: 2, text: '完了' },
+        { id: 'all', value: 1, text: 'すべて' },
+        { id: 'doing', value: 2, text: '作業中' },
+        { id: 'done', value: 3, text: '完了' },
       ],
-      lists: [],
+      todos: [],
       comment: '',
-      show: 0,
+      show: 1,
     }
   },
   methods: {
@@ -61,21 +61,21 @@ export default {
       const todo = {
         comment: this.comment,
         state: true,
-        id: this.lists.length,
+        id: this.todos.length,
       }
-      this.lists.push(todo)
+      this.todos.push(todo)
       this.comment = ''
     },
   },
   computed: {
-    showTasks() {
+    computedTodos() {
       switch (this.show) {
-        case 0:
-          return this.lists
         case 1:
-          return this.lists.filter((e) => e.state)
+          return this.todos
         case 2:
-          return this.lists.filter((e) => !e.state)
+          return this.todos.filter((e) => e.state)
+        case 3:
+          return this.todos.filter((e) => !e.state)
         default:
           return []
       }
