@@ -72,6 +72,10 @@ export default {
         todo.id = index
       })
     },
+    // todosの状態変更
+    changeWorkState(todoId) {
+      this.todos[todoId].state = !this.todos[todoId].state
+    },
   },
   computed: {
     computedTodos() {
