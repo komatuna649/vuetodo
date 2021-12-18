@@ -30,7 +30,7 @@
           <td v-else>
             <button @click="changeWorkState(todo.id)">完了</button>
           </td>
-          <td><button>削除</button></td>
+          <td><button @click="deleteTodo(todo.id)">削除</button></td>
         </tr>
       </table>
       <h2>新規タスクの追加</h2>
@@ -65,6 +65,12 @@ export default {
       }
       this.todos.push(todo)
       this.comment = ''
+    },
+    deleteTodo(todoId) {
+      this.todos.splice(todoId, 1)
+      this.todos.forEach((todo, index) => {
+        todo.id = index
+      })
     },
   },
   computed: {
