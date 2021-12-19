@@ -78,6 +78,7 @@ export default {
     },
   },
   computed: {
+    //todosの表示、非表示の切り替え
     computedTodos() {
       switch (this.show) {
         case 1:
