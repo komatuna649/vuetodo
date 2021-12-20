@@ -2,19 +2,19 @@
   <div id="app">
     <div class="main">
       <h1>ToDoリスト</h1>
-
-      <ul class="work-title">
-        <li v-for="work in works" :key="work.id">
-          <input
-            type="radio"
-            name="show"
-            :id="work.id"
-            :value="work.value"
-            v-model="show"
-          />
-          <label :for="work.id">{{ work.text }}</label>
-        </li>
-      </ul>
+       <!-- ラジオボタンの作成 -->
+       <ul class="work-title">
+         <li v-for="work in works" :key="work.id">
+           <input
+             type="radio"
+             name="show"
+             :id="work.id"
+             :value="work.value"
+             v-model="show"
+           />
+           <label :for="work.id">{{ work.text }}</label>
+         </li>
+       </ul>
       <table>
         <tr>
           <th>ID</th>
@@ -79,18 +79,18 @@ export default {
   },
   computed: {
     //todosの表示、非表示の切り替え
-    computedTodos() {
-      switch (this.show) {
-        case 1:
-          return this.todos
-        case 2:
-          return this.todos.filter((e) => e.state)
-        case 3:
-          return this.todos.filter((e) => !e.state)
-        default:
-          return []
-      }
-    },
+     computedTodos() {
+       switch (this.show) {
+         case 1:
+           return this.todos;
+         case 2:
+           return this.todos.filter((e) => e.state);
+         case 3:
+           return this.todos.filter((e) => !e.state);
+         default:
+           return [];
+       }
+     },
   },
 }
 </script>
