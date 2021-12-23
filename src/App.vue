@@ -2,7 +2,7 @@
   <div id="app">
     <div class="main">
       <h1>ToDoリスト</h1>
-
+      <!-- ラジオボタンの作成 -->
       <ul class="work-title">
         <li v-for="work in works" :key="work.id">
           <input
@@ -78,16 +78,15 @@ export default {
     },
   },
   computed: {
+    //todosの表示、非表示の切り替え
     computedTodos() {
       switch (this.show) {
-        case 1:
+        default:
           return this.todos
         case 2:
           return this.todos.filter((e) => e.state)
         case 3:
           return this.todos.filter((e) => !e.state)
-        default:
-          return []
       }
     },
   },
